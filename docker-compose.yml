@@ -1,0 +1,23 @@
+# =============================================================================
+# SignalR Hub Tester — docker-compose
+# Быстрое развёртывание клиентского приложения в контейнере nginx.
+#
+# Запуск:  docker compose up -d --build
+# Доступ:  http://localhost:8080
+# =============================================================================
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: signalr-hub-tester
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

@@ -1,0 +1,106 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Шапка в фирменном стиле Альфа-Банка (красный фон, белый логотип и текст) */
+.header {
+  padding: 16px 24px !important;
+}
+
+.headerBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  flex-shrink: 0;
+  border-right: 1px solid #e5e5e5;
+  overflow-y: auto;
+}
+
+/* Ручка для изменения ширины левой панели перетаскиванием */
+.resizeHandle {
+  flex-shrink: 0;
+  width: 8px;
+  margin: 0 -4px;
+  cursor: col-resize;
+  position: relative;
+  z-index: 1;
+  touch-action: none;
+}
+
+.resizeHandle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.resizeHandle:hover::after,
+.resizeHandleActive::after {
+  background: #ef3124;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 24px;
+  min-width: 0;
+}
+
+.content {
+  flex: 1;
+  margin-top: 16px;
+}
+
+/* Скрытие неактивной вкладки (сохранение состояния при переключении) */
+.hidden {
+  display: none;
+}
+
+/* Футер в стиле Альфа-Банка */
+.footer {
+  padding: 0 24px 16px;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding-top: 12px;
+}
+
+/* Адаптивность от 1024px (TR-09, C-07) */
+@media (max-width: 1024px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100% !important;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .resizeHandle {
+    display: none;
+  }
+}
